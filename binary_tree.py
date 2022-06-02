@@ -42,7 +42,7 @@ class Node(object):
             return True
         if not root.left or not root.right:
             return False
-        return self.__isMirror(self, self);
+        return self.__isMirror(self.left, self.right);
 
     def symetricTreeIterative(self, root):
         if not root or (not root.left and not root.right):
