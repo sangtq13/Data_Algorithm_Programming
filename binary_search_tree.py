@@ -108,6 +108,24 @@ class Node(object):
             root.right = self.insert(root.right, value)
         return root
 
+    def insertIterative(self, root, value):
+        cur = root
+        parent = None
+        while cur:
+            parent = cur
+            if cur.value > value:
+                cur = cur.left
+            else:
+                cur = cur.right
+        if not parent:
+            return Node(value)
+        if parent.value > value:
+            parent.left = Node(value)
+        else:
+            parent.right = Node(value)
+
+        return root
+
     def __minValue(self, root):
         if not root:
             return root
@@ -133,6 +151,16 @@ class Node(object):
             root.right = self.delete(root.right, minRightNode.value)
 
         return root
+
+#     def deleteIterative(self, root, value):
+#         cur = root
+#         parent = None
+#         while cur:
+#             parent = cur
+#             if cur.value > value:
+#                 cur = cur.left
+#             else:
+#                 cur = cur.right
 
 def binarySearch(arr, low, high, value):
     if high < low:
@@ -211,16 +239,17 @@ root = Node(4, Node(2, Node(1), Node(3)), Node(6, None, Node(7)))
 # print("")
 # root.postOrderIterative(root)
 # print("")
+root.insertIterative(root, 5)
 # root.insert(root, 5)
-# root.preOrder(root)
+root.preOrder(root)
 # print("")
 #searchNode = root.search(root, 2)
-searchNode = root.searchIterative(root, 2)
-searchNode.inOrder(searchNode)
-print("")
-arr = [1,2,3,4,5,6,7]
-print(binarySearch(arr, 0, len(arr)-1, 5))
-print(binarySearchIterative(arr, 0, len(arr)-1, 5))
+# searchNode = root.searchIterative(root, 2)
+# searchNode.inOrder(searchNode)
+# print("")
+# arr = [1,2,3,4,5,6,7]
+# print(binarySearch(arr, 0, len(arr)-1, 5))
+# print(binarySearchIterative(arr, 0, len(arr)-1, 5))
 #
 # root.delete(root, 6)
 # root.inOrder(root)
