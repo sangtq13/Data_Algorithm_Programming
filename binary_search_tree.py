@@ -11,6 +11,19 @@ class Node(object):
         self.preOrder(root.left)
         self.preOrder(root.right)
 
+    def preOrderIterative(selfs, root):
+        stack = [root]
+
+        while stack:
+            node = stack.pop()
+            print(node.value, end='')
+            if node.right:
+                stack.append(node.right)
+            if node.left:
+                stack.append(node.left)
+
+
+
     def inOrder(self, root):
         if not root:
             return
@@ -18,12 +31,51 @@ class Node(object):
         print(root.value, end='')
         self.inOrder(root.right)
 
+    def inOrderIterative(self, root):
+        stack = []
+        cur = root
+        while 1:
+            if cur:
+                stack.append(cur)
+                cur = cur.left
+            else:
+                if stack:
+                    node = stack.pop()
+                    print(node.value, end='')
+                    if node.right:
+                        cur = node.right
+                else:
+                    break
+
     def postOrder(self, root):
         if not root:
             return
         self.postOrder(root.left)
         self.postOrder(root.right)
         print(root.value, end='')
+
+    def postOrderIterative(self, root):
+        stack = []
+        cur = root
+
+        while True:
+            if cur:
+                if cur.right:
+                    stack.append(cur.right)
+                stack.append(cur)
+                cur = cur.left
+            else:
+                if stack:
+                    node = stack.pop()
+                    if stack and node.right and node.right == stack[-1]:
+                        stack.pop()
+                        cur = node.right
+                        stack.append(node)
+                    else:
+                        print(node.value, end='')
+
+                else:
+                    break
 
     def search(self, root, value):
         if not root or root.value == value:
@@ -110,8 +162,8 @@ class KthLargest(object):
 
     def add(self, value):
         self.root = self.root.insert(self.root, value)
-        self.root.inOrder(self.root)
-        print("")
+        # self.root.inOrder(self.root)
+        # print("")
         self.size += 1
         return self.__kthLargest()
 
@@ -123,26 +175,33 @@ class KthLargest(object):
 
 
 root = Node(4, Node(2, Node(1), Node(3)), Node(6, None, Node(7)))
-root.preOrder(root)
-print("")
-root.preOrder(root)
-print("")
-root.inOrder(root)
-print("")
+# root.preOrder(root)
+# print("")
+# root.preOrderIterative(root)
+# print("")
+# root.inOrder(root)
+# print("")
+# root.inOrderIterative(root)
+# print("")
 root.postOrder(root)
 print("")
-root.insert(root, 5)
-root.preOrder(root)
+root.postOrderIterative(root)
 print("")
+# root.insert(root, 5)
+# root.preOrder(root)
+# print("")
+#
+# searchNode = root.search(root, 2)
+# print(searchNode.inOrder(searchNode))
+# arr = [1,2,3,4,5,6,7]
+# print(binarySearch(arr, 0, len(arr)-1, 2))
+#
+# root.delete(root, 6)
+# root.inOrder(root)
 
-searchNode = root.search(root, 2)
-print(searchNode.inOrder(searchNode))
-arr = [1,2,3,4,5,6,7]
-print(binarySearch(arr, 0, len(arr)-1, 2))
-
-root.delete(root, 6)
-root.inOrder(root)
-
-kthLargest = KthLargest(3, [1,2,5,4,3,6,7])
-kthLargest.root.inOrder(kthLargest.root)
-print(kthLargest.add(8))
+# kthLargest = KthLargest(3, [1,2,5,4,3,6,7])
+# kthLargest.root.inOrder(kthLargest.root)
+# print("")
+# print(kthLargest.add(8))
+# print(kthLargest.add(9))
+# print(kthLargest.add(10))
