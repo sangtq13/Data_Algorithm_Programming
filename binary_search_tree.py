@@ -85,6 +85,18 @@ class Node(object):
         if root.value < value:
             return self.search(root.right, value)
 
+    def searchIterative(self, root, value):
+        cur = root
+        while cur:
+            if cur.value > value:
+                cur = cur.left
+            elif cur.value == value:
+                return cur
+            else:
+                cur = cur.right
+
+        return None
+
     def insert(self, root, value):
         if not root:
             return Node(value)
@@ -132,6 +144,18 @@ def binarySearch(arr, low, high, value):
         return binarySearch(arr, mid+1, high, value)
     else:
         return binarySearch(arr, low, mid-1, value)
+
+def binarySearchIterative(arr, low, high, value):
+    while low <= high:
+        mid = (low+high)//2
+        if arr[mid] == value:
+            return mid
+        elif arr[mid] > value:
+            high = mid-1
+        else:
+            low = mid+1
+    return -1
+
 
 class KthLargest(object):
     def __init__(self, k, arr=[]):
@@ -183,18 +207,20 @@ root = Node(4, Node(2, Node(1), Node(3)), Node(6, None, Node(7)))
 # print("")
 # root.inOrderIterative(root)
 # print("")
-root.postOrder(root)
-print("")
-root.postOrderIterative(root)
-print("")
+# root.postOrder(root)
+# print("")
+# root.postOrderIterative(root)
+# print("")
 # root.insert(root, 5)
 # root.preOrder(root)
 # print("")
-#
-# searchNode = root.search(root, 2)
-# print(searchNode.inOrder(searchNode))
-# arr = [1,2,3,4,5,6,7]
-# print(binarySearch(arr, 0, len(arr)-1, 2))
+#searchNode = root.search(root, 2)
+searchNode = root.searchIterative(root, 2)
+searchNode.inOrder(searchNode)
+print("")
+arr = [1,2,3,4,5,6,7]
+print(binarySearch(arr, 0, len(arr)-1, 5))
+print(binarySearchIterative(arr, 0, len(arr)-1, 5))
 #
 # root.delete(root, 6)
 # root.inOrder(root)
