@@ -6,7 +6,12 @@ class Node(object):
         self.left = left
         self.right = right
 
-    def maximumDepth(self):
+    def maximumDepth(self, root):
+        if not root:
+            return 0
+        return max(1+root.maximumDepth(root.left), 1+root.maximumDepth(root.right))
+    
+    def maximumDepthIterative(self):
         maxDepth = 1
         depth = {}
         depth[self.value] = 1
@@ -80,5 +85,6 @@ class Node(object):
 root = Node(1, Node(2, Node(3), Node(4)), Node(2, Node(4), Node(3)))
 # root = Node(1, Node(2), Node(2, Node(4), Node(3)))
 print(root.maximumDepth())
+print(root.maximumDepthIterative())
 print(root.symetricTreeIterative(root))
 print(root.symetricTree(root))
