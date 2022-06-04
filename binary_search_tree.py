@@ -152,15 +152,42 @@ class Node(object):
 
         return root
 
-#     def deleteIterative(self, root, value):
-#         cur = root
-#         parent = None
-#         while cur:
-#             parent = cur
-#             if cur.value > value:
-#                 cur = cur.left
-#             else:
-#                 cur = cur.right
+    def deleteIterative(self, root, value):
+        cur = root
+        parent = None
+        while cur and cur.value != value:
+            parent = cur
+            if cur.value > value:
+                cur = cur.left
+            else:
+                cur = cur.right
+
+        if not cur:
+            print("Don't have this node in tree")
+        if not cur.left:
+            if parent.right == cur:
+                parent.right = cur.right
+            else:
+                parent.left = cur.right
+        if not cur.right:
+            if parent.left == cur:
+                parent.left = cur.left
+            else:
+                parent.left = cur.right
+        tmp = cur.right
+        pre = None
+        while tmp.left:
+            pre = tmp
+            tmp = tmp.left
+
+        cur.value = tmp.value
+        if pre:
+            pre.left = tmp.right
+        else:
+            cur.right = tmp.right
+        tmp = None
+        return root
+
 
 def binarySearch(arr, low, high, value):
     if high < low:
@@ -239,9 +266,9 @@ root = Node(4, Node(2, Node(1), Node(3)), Node(6, None, Node(7)))
 # print("")
 # root.postOrderIterative(root)
 # print("")
-root.insertIterative(root, 5)
+# root.insertIterative(root, 5)
 # root.insert(root, 5)
-root.preOrder(root)
+# root.preOrder(root)
 # print("")
 #searchNode = root.search(root, 2)
 # searchNode = root.searchIterative(root, 2)
@@ -251,8 +278,9 @@ root.preOrder(root)
 # print(binarySearch(arr, 0, len(arr)-1, 5))
 # print(binarySearchIterative(arr, 0, len(arr)-1, 5))
 #
-# root.delete(root, 6)
-# root.inOrder(root)
+root.delete(root, 4)
+# root.deleteIterative(root, 4)
+root.inOrder(root)
 
 # kthLargest = KthLargest(3, [1,2,5,4,3,6,7])
 # kthLargest.root.inOrder(kthLargest.root)
