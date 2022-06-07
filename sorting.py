@@ -118,7 +118,7 @@ class Sorting(object):
         self.__mergeSortHelper(arr, left, right)
 
     # Merge from bottom up with width is the power of 2: 1, 2, 4, 8, ...
-    def mergeSortIterativeA(self, arr):
+    def mergeSortIterative(self, arr):
         n = len(arr)-1
         width = 1
         while width < n:
