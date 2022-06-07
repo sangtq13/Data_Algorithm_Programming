@@ -1,3 +1,5 @@
+import time
+
 class Sorting(object):
     def bubbleSort(self, arr):
         s = len(arr)
@@ -25,7 +27,34 @@ class Sorting(object):
                     min_index = j
             arr[i], arr[min_index] = arr[min_index], arr[i]
 
-    def __partition(self, arr, low, high):
+    #arr = [3,1,5,6,7,2]
+    def __partitionLeft(self, arr, low, high):
+        i = low
+        pivot = arr[low]
+        for j in range(low+1, high+1):
+            if arr[j] <= pivot:
+                i += 1
+                arr[i], arr[j] = arr[j], arr[i]
+        arr[i], arr[low] = arr[low], arr[i]
+
+        return i
+
+    def __partitionMid(self, arr, low, high):
+        mid = (low+high)//2
+        pivot = arr[mid]
+        i = low
+        j = high
+        while i < j:
+            while arr[i] < pivot:
+                i += 1
+            while arr[j] > pivot:
+                j -= 1
+            arr[i], arr[j] = arr[j], arr[i]
+        if i>=j:
+            return j
+        return i+1
+
+    def __partitionRight(self, arr, low, high):
         i = low-1
         pivot = arr[high]
         for j in range(low, high):
@@ -37,10 +66,20 @@ class Sorting(object):
 
     def quickSort(self, arr, low, high):
         if low < high:
-            pi = self.__partition(arr, low, high)
+            # pi = self.__partitionRight(arr, low, high)
+            # pi = self.__partitionMid(arr, low, high)
+            pi = self.__partitionLeft(arr, low, high)
             self.quickSort(arr, low, pi-1)
             self.quickSort(arr, pi+1, high)
 
+    def quickSortIterative(self, arr, low, high):
+        stack = [[low, high]]
+        while stack:
+            left, right = stack.pop()
+            if left < right:
+                pi = self.__partitionLeft(arr, left, right)
+                stack.append([pi+1, right])
+                stack.append([low, pi-1])
 
     def __merge(self, arr, left, mid, right):
         left_arr = arr[left:mid+1]
@@ -57,7 +96,7 @@ class Sorting(object):
                 arr[merge_index] = right_arr[j]
                 j += 1
             merge_index += 1
-            
+
         while i < mid-left+1:
             arr[merge_index] = left_arr[i]
             merge_index += 1
@@ -67,20 +106,44 @@ class Sorting(object):
             merge_index += 1
             j += 1
 
-
-    def mergeSort(self, arr, left, right):
+    def __mergeSortHelper(self, arr, left, right):
         if left < right:
             mid = (left + right)//2
-            self.mergeSort(arr, left, mid)
-            self.mergeSort(arr, mid+1, right)
+            self.__mergeSortHelper(arr, left, mid)
+            self.__mergeSortHelper(arr, mid+1, right)
             self.__merge(arr, left, mid, right)
+    def mergeSort(self, arr):
+        left = 0
+        right = len(arr)-1
+        self.__mergeSortHelper(arr, left, right)
 
-arr = [1,3,5,6,7,2]
+    # Merge from bottom up with width is the power of 2: 1, 2, 4, 8, ...
+    def mergeSortIterativeA(self, arr):
+        n = len(arr)-1
+        width = 1
+        while width < n:
+            left = 0
+            while left < n:
+                mid = min(left + width - 1, n)
+                right = min(left + width * 2 - 1, n)
+                self.__merge(arr, left, mid, right)
+                left += width * 2
+            width *= 2
+
+arr = [3,1,5,6,8,10,4,13,9,7,2]
 s = Sorting()
 # s.bubbleSort(arr)
+# s.selectionSort(arr)
 # s.insertionSort(arr)
 # s.quickSort(arr, 0, len(arr)-1)
-# s.selectionSort(arr)
-s.mergeSort(arr, 0 ,len(arr)-1)
-print(arr)
+# s.quickSortIterative(arr, 0, len(arr)-1)
+st = time.time()
+s.mergeSort([3,1,5,6,8,10,4,13,9,7,2])
+et = time.time()
+print(et-st)
+st = time.time()
+s.mergeSortIterative([3,1,5,6,8,10,4,13,9,7,2])
+et = time.time()
+print(et-st)
+
 
