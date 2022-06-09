@@ -4,7 +4,7 @@ class Solution(object):
         self.name = 'S->13'
     
     # Using recursive DFS
-    # Time complexity: O(n^2)
+    # Time complexity: O(n)
     # Space complexity: O(n)
     def __hasCycle(self, graph, course, seen, cache):
         if course in cache:
@@ -33,7 +33,7 @@ class Solution(object):
         return True
 
     # Using stack
-    # Time complexity: O(n^2)
+    # Time complexity: O(n)
     # Space complexity: O(n)
     def __hasCycleIterative(self, graph, course, state):
         stack = [course]
