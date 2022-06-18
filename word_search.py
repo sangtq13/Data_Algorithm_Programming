@@ -18,10 +18,11 @@ class Solution(object):
     def __wordSearchHelper(self, board, word, x, y, start=0):
         row = len(board)
         col = len(board[0])
+        lw = len(word)-1
         direction = [[0, 1], [0, -1], [-1, 0], [1, 0]]
-        if board[x][y] != word[start] or start > len(word)-1:
+        if board[x][y] != word[start]:
             return False
-        if start == len(word)-1 and board[x][y] == word[start]:
+        if start == lw:
             return True
         board[x][y] = True
         for c in direction:
