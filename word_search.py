@@ -2,80 +2,89 @@ class Solution(object):
     def __init__(self):
         self.name = 'S->13'
 
-    def getNeighbors(self, board, x, y):
-        row = len(board)
-        col = len(board[0])
-        coordinators = [[0,1], [0,-1], [-1,0], [1,0]]
-        neighbors = []
-        for c in coordinators:
-            nX = x + c[0]
-            nY = y + c[1]
-            if 0 <= nX < row and 0 <= nY < col:
-                neighbors.append((nX,nY))
-
-        return neighbors
-
-    def __wordSearchHelper(self, board, word, x, y, index, visited):
-        if index == len(word)-1 and board[x][y] == word[index]:
-            return True
-        if board[x][y] == word[index]:
-            visited.append((x, y))
-            for neighbor in self.getNeighbors(board, x, y):
-
-
     def wordSearchRecursive(self, board, word):
         row = len(board)
         col = len(board[0])
-        lw = len(word)
+
         for i in range(row):
             for j in range(col):
-                if self.__wordSearchHelper(board, word, i, j, 0, []):
+                if self.__wordSearchHelper(board, word, i, j, 0):
                     return True
-
         return False
 
-    def wordSearch(self, board, word):
+    # Backtracking method
+    # Time complexity: O(m*n) with m, n is row and col of matrix
+    # Space complexity: O(m*n) for checking visited and for stack of recursive function
+    def __wordSearchHelper(self, board, word, x, y, start=0):
+        row = len(board)
+        col = len(board[0])
+        direction = [[0, 1], [0, -1], [-1, 0], [1, 0]]
+        if board[x][y] != word[start] or start > len(word)-1:
+            return False
+        if start == len(word)-1 and board[x][y] == word[start]:
+            return True
+        board[x][y] = True
+        for c in direction:
+            nX = x + c[0]
+            nY = y + c[1]
+            if 0 <= nX < row and 0 <= nY < col and board[nX][nY] != True:
+                ret = self.__wordSearchHelper(board, word, nX, nY, start+1)
+                if ret:
+                    return True
+        board[x][y] = word[start]
+        return False
+
+    # Using stack method
+    # Time complexity: O(m*n)
+    def wordSearchIterative(self, board, word):
         row = len(board)
         col = len(board[0])
         lw = len(word)
+        direction = [[0, 1], [0, -1], [-1, 0], [1, 0]]
         for i in range(row):
             for j in range(col):
-                stack = [(i, j, 0, [])]
+                stack = [(i, j, 0, [[0]*col for _ in range(row)])]
                 while stack:
-                    x, y, index, visited = stack[-1]
-                    visited.append((x, y))
-
-                    if board[x][y] == word[index]:
-                        if index == lw - 1:
+                    x, y, start, seen= stack.pop()
+                    if board[x][y] == word[start]:
+                        if start == lw-1:
                             return True
-                        elif index < lw - 1:
-                            for neighbor in self.getNeighbors(board, x, y):
-                                if neighbor not in visited:
-                                    stack.append((neighbor[0], neighbor[1], index+1, visited))
-
-                    else:
-                        visited.pop()
-
+                        for c in direction:
+                            nX = x + c[0]
+                            nY = y + c[1]
+                            if 0 <= nX < row and 0 <= nY < col and seen[nX][nY] != 1:
+                                newVisited = [x[:] for x in seen]
+                                newVisited[x][y] = 1
+                                stack.append((nX, nY, start+1, newVisited))
         return False
 
-board = [["A","A","A","A","A","A"],
-         ["A","A","A","A","A","A"],
-         ["A","A","A","A","A","A"],
-         ["A","A","A","A","A","A"],
-         ["A","A","A","A","A","A"],
-         ["A","A","A","A","A","A"]]
+# board = [["A","A","A","A","A","A"],
+#          ["A","A","A","A","A","A"],
+#          ["A","A","A","A","A","A"],
+#          ["A","A","A","A","A","A"],
+#          ["A","A","A","A","A","A"],
+#          ["A","A","A","A","A","A"]]
+# word = "AAAAAAAAAAAAAAB"
 board = [["A","B","C","E"],
          ["S","F","E","S"],
          ["A","D","E","E"]]
+word = "ABCESEEEFS"
+#
+# board = [["A","B","C","E"],
+#          ["S","F","E","S"],
+#          ["A","D","E","E"]]
+# word = "ABCB"
+#
+# board = [["C","A","A"],
+#          ["A","A","A"],
+#          ["B","C","D"]]
+# word = 'AAB'
+
 # board = [["A","B","C","E"],
 #          ["S","F","C","S"],
 #          ["A","D","E","E"]]
-
-
-# word = "AAAAAAAAAAAAAAB"
-word = "ABCESEEEFS"
-# word = "ABCB"
+# word = "ABCCED"
 
 s = Solution()
-# print(s.getNeighbors(board, 1, 0))
-print(s.wordSearch(board, word))
+# print(s.wordSearchRecursive(board, word))
+print(s.wordSearchIterative(board, word))
