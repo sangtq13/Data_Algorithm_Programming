@@ -28,9 +28,8 @@ class Solution(object):
         for c in direction:
             nX = x + c[0]
             nY = y + c[1]
-            if 0 <= nX < row and 0 <= nY < col and board[nX][nY] != True:
-                ret = self.__wordSearchHelper(board, word, nX, nY, start+1)
-                if ret:
+            if 0 <= nX and nX < row and 0 <= nY and nY < col and board[nX][nY] != True:
+                if self.__wordSearchHelper(board, word, nX, nY, start+1):
                     return True
         board[x][y] = word[start]
         return False
