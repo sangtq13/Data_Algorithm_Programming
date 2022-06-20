@@ -16,12 +16,8 @@ class Solution(object):
         if currentDir == DOWN:
             return (currentPos[0]+1, currentPos[1])
 
-    def __validPosition(self, matrix, currentPos):
-        row = len(matrix)
-        col = len(matrix[0])
-        if 0 <= currentPos[0] < row and 0 <= currentPos[1] < col and matrix[currentPos[0]][currentPos[1]] != '*':
-            return True
-        return False
+    def __validPosition(self, matrix, currentPos, row, col):
+        return 0 <= currentPos[0] < row and 0 <= currentPos[1] < col and matrix[currentPos[0]][currentPos[1]] != '*'
 
     def __nextDirection(self, direction):
         return {
@@ -46,8 +42,8 @@ class Solution(object):
             result[i//col][i%col] = matrix[currentPos[0]][currentPos[1]]
             matrix[currentPos[0]][currentPos[1]] = '*'
             nextPos = self.__nextPosition(currentPos, currentDir)
-            if not self.__validPosition(matrix, nextPos):
-                currentDir = self.__nextDirection(current_direction)
+            if not self.__validPosition(matrix, nextPos, row, col):
+                currentDir = self.__nextDirection(currentDir)
                 currentPos = self.__nextPosition(currentPos, currentDir)
             else:
                 currentPos = nextPos
