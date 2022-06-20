@@ -23,7 +23,7 @@ class Solution(object):
             return True
         return False
 
-    def __next_direction(self, direction):
+    def __nextDirection(self, direction):
         return {
             RIGHT: DOWN,
             DOWN: LEFT,
@@ -31,30 +31,27 @@ class Solution(object):
             UP: RIGHT
         }[direction]
 
+    # Time complexity: O(m*n)
+    # Space complexity: O(m*n) for storaging result
     def spiralTraversal(self, matrix):
         row = len(matrix)
         col = len(matrix[0])
         result = [[0] * col for _ in range(row)]
-        current_direction = RIGHT
-        current_position = (0, 0)
+        currentDir = RIGHT
+        currentPos = (0, 0)
         i = 0
-        j = 0
         remain = row*col
         while remain:
             remain -= 1
-            result[i][j] = matrix[current_position[0]][current_position[1]]
-            matrix[current_position[0]][current_position[1]] = '*'
-            nextPos = self.__nextPosition(current_position, current_direction)
+            result[i//col][i%col] = matrix[currentPos[0]][currentPos[1]]
+            matrix[currentPos[0]][currentPos[1]] = '*'
+            nextPos = self.__nextPosition(currentPos, currentDir)
             if not self.__validPosition(matrix, nextPos):
-                current_direction = self.__next_direction(current_direction)
-                current_position = self.__nextPosition(current_position, current_direction)
+                currentDir = self.__nextDirection(current_direction)
+                currentPos = self.__nextPosition(currentPos, currentDir)
             else:
-                current_position = nextPos
-
-            j += 1
-            if j == col:
-                j = 0
-                i += 1
+                currentPos = nextPos
+            i += 1
         return result
 
 matrix = [[1,2,3],[4,5,6],[7,8,9]]
