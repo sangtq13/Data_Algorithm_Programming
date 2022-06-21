@@ -1,13 +1,21 @@
-class Queue(object):
+class MyQueue(object):
+
     def __init__(self):
-        self.name = 'S->13'
         self.s1 = []
         self.s2 = []
 
-    def enqueue(self, value):
-        self.s1.append(value)
+    def push(self, x):
+        """
+        :type x: int
+        :rtype: None
+        """
+        self.s1.append(x)
+        
 
-    def dequeue(self):
+    def pop(self):
+        """
+        :rtype: int
+        """
         if self.s2:
             return self.s2.pop()
         if self.s1:
@@ -15,14 +23,32 @@ class Queue(object):
                 self.s2.append(self.s1.pop())
             return self.s2.pop()
         return None
-q = Queue()
-q.enqueue(1)
-q.enqueue(2)
-q.enqueue(3)
-print(q.dequeue())
-q.enqueue(4)
-q.enqueue(5)
-print(q.dequeue())
-print(q.dequeue())
-print(q.dequeue())
-print(q.dequeue())
+
+    def peek(self):
+        """
+        :rtype: int
+        """
+        if self.s2:
+            return self.s2[-1]
+        if self.s1:
+            while self.s1:
+                self.s2.append(self.s1.pop())
+            return self.s2[-1]
+        return None
+        
+        
+
+    def empty(self):
+        """
+        :rtype: bool
+        """
+        return not self.s1 and not self.s2
+        
+
+
+# Your MyQueue object will be instantiated and called as such:
+# obj = MyQueue()
+# obj.push(x)
+# param_2 = obj.pop()
+# param_3 = obj.peek()
+# param_4 = obj.empty()
