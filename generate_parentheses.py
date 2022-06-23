@@ -34,7 +34,20 @@ class Solution(object):
                 stack.append((s + ')', left, right + 1))
         return result
 
+    # Time complexity: less than O(2^n)
+    # Space complexity: less than O(2^n)
+    def generateParenthesisA(self, N):
+        if N == 0: return ['']
+        ans = []
+        for c in range(N):
+            for left in self.generateParenthesisA(c):
+                for right in self.generateParenthesisA(N - 1 - c):
+                    ans.append('({}){}'.format(left, right))
+        return ans
+
 n = 3
 s = Solution()
-print(s.generateParentheses(n))
-print(s.generateParenthesesRecursive(n))
+# print(s.generateParentheses(n))
+# print(s.generateParenthesesRecursive(n))
+print(s.generateParenthesisA(n))
+print('({}){}'.format('()', ''))
