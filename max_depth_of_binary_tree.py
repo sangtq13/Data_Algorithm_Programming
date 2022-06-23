@@ -30,7 +30,10 @@ class Solution():
         if root == None:
             return 0
         return 1 + max(self.maxDepth(root.left), self.maxDepth(root.right))
-
+    
+    # Iterative method
+    # Time complexity: O(n)
+    # Space complexity: O(n)
     def maxDepthIterative(self, root):
         maxDepth = 0
         stack = [(root, 1)]
