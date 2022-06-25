@@ -8,7 +8,7 @@ class Solution(object):
 
     # Using hashmap
     # Timecomplexity: O(n)
-    # Space complexity: O(n)
+    # Space complexity: O(3)
     def sortListThreeUniqueNumbersA(self, arr):
         d = OrderedDict()
         ret = []
