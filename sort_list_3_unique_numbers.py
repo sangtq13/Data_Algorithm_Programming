@@ -38,6 +38,10 @@ class Solution(object):
                 threeIndex -= 1
         return arr
 
+    # This method is equivalent to second method but we will go from
+    # the high index of the array.
+    # Time complexity: O(n)
+    # Space complexity: O(1)
     def sortListThreadUniqueNumbersC(self, arr):
         n = len(arr)
         oneIndex = 0
