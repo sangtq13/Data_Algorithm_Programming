@@ -3,7 +3,7 @@ class Solution(object):
         self.name = 'S->13'
 
     # Time complexity: O(n)
-    # Space complexity: O(n)
+    # Space complexity: O(1)
     def findRange(self, nums):
         l = len(nums)
         if l == 0:
