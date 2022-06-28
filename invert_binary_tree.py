@@ -64,6 +64,8 @@ class Solution():
         return root
 
     # Iterative method using BFS
+    # Time complexity: O(n)
+    # Space complexity: O(1)
     def invertTreeIterativeBFS(self, root):
         q = deque()
         q.append(root)
