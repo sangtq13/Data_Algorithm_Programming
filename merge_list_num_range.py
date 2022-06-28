@@ -8,8 +8,6 @@ class Solution(object):
         l = len(nums)
         if l == 0:
             return []
-        if l == 1:
-            return [str(nums[0])]
         start = nums[0]
         result = []
         nums.append(nums[-1] + 2)
