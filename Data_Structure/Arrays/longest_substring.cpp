@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int lengthOfLongestSubstring(string s) {
+    int lengthOfLongestSubstringA(string s) {
         int l = s.size();
         if (l == 0) return 0;
         unordered_map<char, int> m;
@@ -28,6 +28,22 @@ public:
         if (start != l-1) {
             longest = max(longest, l-start);
         }
+        return longest;
+    }
+    
+    int lengthOfLongestSubstringB(string s) {
+        unordered_map<char, int> m;
+        int start = 0;
+        int longest = 0;
+        for (int i = 0; i < s.size(); ++i) {
+            m[s[i]] += 1;
+            while (m[s[i]] > 1) {
+                m[s[start]] -= 1;
+                start++;
+            }
+            longest = max(longest, i-start+1);
+        }
+            
         return longest;
     }
 };
