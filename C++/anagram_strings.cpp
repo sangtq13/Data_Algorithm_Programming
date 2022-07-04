@@ -8,6 +8,8 @@ public:
         return true;
     }
     
+    // Time complexity: O(n)
+    // Space complexity: O(k)
     vector<int> findAnagrams(string s, string p) {
         int ks[26] {0};
         int kp[26] {0};
