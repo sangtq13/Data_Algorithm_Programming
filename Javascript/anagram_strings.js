@@ -11,6 +11,8 @@ const compare = (a, b) => {
     return true
 };
 
+// Time complexity: O(n)
+// Space complexity: O(k)
 var findAnagrams = function(s, p) {
     let lp = p.length
     let ls = s.length
