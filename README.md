@@ -1,1 +1,1 @@
-C++ practice in HackerRank
+Data structure and Algorithm
