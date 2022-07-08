@@ -5,6 +5,7 @@ function Node(val, next) {
 // Time complexity: O(n)
 // Space complexity: O(1)
 var rotateLinkedList = (head, k) => {
+    if (!head) return null
     var len = 0
     var cur = head
     var tail = null
