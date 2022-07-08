@@ -19,6 +19,7 @@ class Solution():
     # Time complexity: O(n)
     # Space complexity: O(1)
     def rotateLinkedList(self, head, k):
+        if not head: return None
         cur = head
         tail = None
         length = 0
