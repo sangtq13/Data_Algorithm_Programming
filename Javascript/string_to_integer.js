@@ -14,6 +14,8 @@ function isdigit(char) {
   return !isNaN(char);
 }
 
+// Time complexity: O(n)
+// Space complexity: O(1)
 var myAtoi = function(s) {
     var num = 0
     var check_sign = false
