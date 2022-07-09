@@ -3,7 +3,7 @@ class Solution():
         self.name = 'S->13'
 
     # Time complexity: O(n)
-    # Space complexity: O(n)
+    # Space complexity: O(1)
     def StringToInteger(self, s):
         sign = 1
         check_digit = False
