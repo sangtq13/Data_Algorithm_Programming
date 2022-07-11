@@ -22,7 +22,7 @@ class Solution(object):
                 dec_diag[topx - topy] = True
                 board[current_row][current_col] = '.'
     
-    # Time complexity: O(n!)
+    # Time complexity: O(nˆn)
     # Space complexity: O(n)
     def solveNQueens(self, n):
         """
