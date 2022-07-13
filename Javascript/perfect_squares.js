@@ -1,4 +1,4 @@
-// Time complexity: O(n)
+// Time complexity: O(nlogn)
 // Space complexity: O(n)
 var numSquares = function(n) {
     var i = 0;
