@@ -2,7 +2,7 @@ class Solution():
     def __init__(self):
         self.name = 'S->13'
 
-    # Time complexity: O(n)
+    # Time complexity: O(nlogn)
     # Space complexity: O(n)
     def SumOfSquares(self, n):
         i = 1
