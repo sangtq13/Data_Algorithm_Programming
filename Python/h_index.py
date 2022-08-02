@@ -19,6 +19,8 @@ class Solution():
             if total >= i:
                 return i
             i -= 1
+            
+        return 0
 citations = [3, 0, 6, 1, 4, 4, 5]
 citations = [3, 0, 6, 1, 4, 4, 5]
 print(Solution().HIndex(citations))
