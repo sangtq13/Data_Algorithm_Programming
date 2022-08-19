@@ -38,7 +38,7 @@ class Solution():
                 cur = cur.children[word[i]]
             cur.str = word
 
-    def Search(self, pre, word, cache):
+    def Search(self, pre, word):
         cur = self.trie
         for i in range(len(word)):
             if word[i] in cur.children:
@@ -59,15 +59,14 @@ class Solution():
     # Space complexity: O(n * m^2/2)
     def WordConcatenationB(self, words):
         self.BuildTrie(words)
-        cache = {}
         result = []
         for word in words:
-            if self.Search(False, word, cache):
+            if self.Search(False, word):
                 result.append(word)
         return result
 
 s = Solution()
-words = ["cat" ,"cats", "catsdogcats", "dog", "dogcatsdog", "hippopotamuses", "rat", "ratcatdogcat"]
+words = ["cat" ,"cats", "catsdogcats", "dog", "dogcatsdog", "hippopotamuses", "rat", "ratcatdogcat", 'catsdog']
 #Output: ["catsdogcats", "dogcatsdog", "ratcatdogcat"]
 print(s.WordConcatenationA(words))
 print(s.WordConcatenationB(words))
