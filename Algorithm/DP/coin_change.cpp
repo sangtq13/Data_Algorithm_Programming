@@ -15,6 +15,8 @@ vector<string> split(const string &);
  *  2. LONG_INTEGER_ARRAY c
  */
 
+// Time complexity: O(m*n)
+// Space complexity: O(m*n)
 long getWays(int n, vector<long> c) {
     int s = c.size();
     long dp[s][n+1];
