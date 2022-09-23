@@ -8,7 +8,7 @@ class Solution():
     def ConstructArray(self, n, k, x):
         dp = [0] * n
         path = [1] * n
-        if x == 1: dp[0] == 1
+        if x == 1: dp[0] = 1
 
         for i in range(1, n):
             path[i] = (path[i-1] * (k-1)) % MOD
