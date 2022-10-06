@@ -2,6 +2,8 @@ function isLowerCase(myString) {
     return (myString == myString.toLowerCase()) 
 } 
 
+// Time complexity: O(m*n)
+// Space complexity: O(m*n)
 const abbreviation = function(a, b) {
     var upper = 0
     var m = a.length
@@ -29,7 +31,7 @@ const abbreviation = function(a, b) {
         for (var j = i; j < m; ++j) {
             if (isLowerCase(a[j])) {
                 if (a[j].toUpperCase() == b[i]) {
-                    dp[i][j] = dp[i-1][j-1] | dp[i][j-1]
+                    dp[i][j] = dp[i-1][j-1] || dp[i][j-1]
                 }
                 else {
                     dp[i][j] = dp[i][j-1]
@@ -45,7 +47,7 @@ const abbreviation = function(a, b) {
             }
         }
     }
-    console.log(dp)
+
     return dp[n-1][m-1]
 }
 
