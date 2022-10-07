@@ -14,8 +14,9 @@ const int MAX_XOR = (1 << 13) - 1;
  * The function is expected to return an INTEGER.
  * The function accepts INTEGER_ARRAY a as parameter.
  */
-// Time complexity: O(n * 2^(logn))
-// Space complexity: O(2^(logn+1))
+// For range of num: 3500 - 4500
+// Time complexity: O(1001 * 8192)
+// Space complexity: O(2 * 8192)
 
 int primeXor(vector<int> a) {
     int count[1001] = {0};
