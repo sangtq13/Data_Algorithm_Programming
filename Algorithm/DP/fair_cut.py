@@ -19,9 +19,9 @@ class Solution:
                 # Put arr[i] to J, it will have (j) number less than arr[i] in set I and 
                 # (k-j)) number greater than arr[i] in set I for future calculation 
                 to_j = dp[i][j] + j * arr[i] - (k - j) * arr[i]
-                if dp[i + 1][j + 1] > to_i:
+                if dp[i+1][j+1] > to_i:
                     dp[i+1][j+1] = to_i
-                if dp[i + 1][j] > to_j:
+                if dp[i+1][j] > to_j:
                     dp[i+1][j] = to_j
 
         return dp[n][k]
