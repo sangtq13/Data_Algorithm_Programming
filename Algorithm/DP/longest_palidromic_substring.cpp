@@ -1,11 +1,9 @@
 class Solution {
 public:
-    // Time complexity: O(n^2)
-    // Space complexity: O(n^2)
     string longestPalindrome(string s) {
         int m = 1;
         int n = s.size();
-        vector<vector<int>> dp(n, vector<int> (n+1, 0));
+        int dp[n][n+1];
         for (int i = 0; i < n; ++i) {
             dp[i][1] = 1;
             dp[i][0] = 1;
@@ -17,6 +15,9 @@ public:
                     dp[j][i] = 1;
                     if (i > m) m = i;
                 }
+                else {
+                    dp[j][i] = 0;
+                }
             }
         }
         for (int i = 0; i < n-m+1; ++i) {
@@ -24,6 +25,5 @@ public:
                 return s.substr(i, m);
             }
         }
-        return "";
     }
 };
