@@ -39,6 +39,8 @@ public:
     }
 };
 
+// Time complexity: O(n*log(n!))
+// Time complexity: O(log(n))
 void extraLongFactorials(int n) {
     vector<int> a(1, 1);
     for (int i = 2; i <= n; ++i) {
