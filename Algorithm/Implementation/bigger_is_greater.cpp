@@ -14,6 +14,7 @@ string rtrim(const string &);
  * The function accepts STRING w as parameter.
  */
 
+// This problem using Next lexicographical permutation algorithm
 // Time complexity: O(n)
 // Space complexity: O(1)
 string biggerIsGreater(string w) {
