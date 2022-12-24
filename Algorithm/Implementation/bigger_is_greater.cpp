@@ -25,19 +25,19 @@ string biggerIsGreater(string w) {
         i--;
     }
     if (i == 0) return "no answer";
-    int j = s-1;
     
-    // Let w[i - 1] be the pivot
-    // Find rightmost element greater than the pivot    
+    // Let w[i-1] be the pivot
+    // Find rightmost element greater than the pivot
+    int j = s-1;
     while(w[i-1] >= w[j]) {
         j--;
     }
   
     // Swap the pivot with j
     swap(w[i-1], w[j]);
-    j = s-1;
   
     // Reverse the suffix
+    j = s-1;
     while(i < j) {
         swap(w[i], w[j]);
         i++;
