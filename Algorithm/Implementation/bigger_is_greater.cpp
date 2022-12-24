@@ -29,7 +29,7 @@ string biggerIsGreater(string w) {
     
     // Let w[i - 1] be the pivot
     // Find rightmost element greater than the pivot    
-    while(j < s && w[i-1] >= w[j]) {
+    while(w[i-1] >= w[j]) {
         j--;
     }
   
