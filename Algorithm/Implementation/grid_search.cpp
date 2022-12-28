@@ -10,20 +10,22 @@ vector<string> split(const string &);
  * Complete the 'gridSearch' function below.
  *
  * The function is expected to return a STRING.
- * The function accepts following parameters:
+ * The function accepts fointowing parameters:
  *  1. STRING_ARRAY G
  *  2. STRING_ARRAY P
  */
  
-#define ll long long
-const ll base = 256;
-const ll mod = 1e9 + 7;
+const int base = 256;
+const int mod = 1e9 + 7;
 
-vector<int> Search(string s, string p, ll hp, ll pow_p)
+// This solution uses Rabin-Karp Algorithm for Pattern Searching
+// Time complexity: O(rowG * colG)
+// Space complexity: O(1)
+vector<int> Search(string s, string p, int hp, int pow_p)
 {
     int lp = p.size();
     int ls = s.size();
-    ll hs = 0;
+    int hs = 0;
     vector<int> ans;
     
     for (int i = 0; i < lp; ++i) {
@@ -51,15 +53,12 @@ vector<int> Search(string s, string p, ll hp, ll pow_p)
     return ans;
 }
 
-// This solution uses Rabin-Karp Algorithm for Pattern Searching
-// Time complexity: O(rowG * colG)
-// Space complexity: O(1)
 string gridSearch(vector<string> G, vector<string> P) {
     int lp = P.size();
     int lg = G.size();
     int l_pattern = P[0].size();
-    ll pow_p = 1;
-    ll hp = 0;
+    int pow_p = 1;
+    int hp = 0;
     
     for (int i = 0; i < l_pattern-1; ++i) {
         pow_p = (base * pow_p) % mod;
