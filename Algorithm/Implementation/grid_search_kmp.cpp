@@ -72,7 +72,7 @@ vector<int> Search(string s, string p, int* lps) {
     return ans;
 }
 
-// This solution is using KMP (Knuth Morris Pratt) algorithm for pattern searching
+// This solution uses KMP (Knuth Morris Pratt) algorithm for pattern searching
 // Time complexity: O(rowG * colG)
 // Space complexity: O(colP)
 string gridSearch(vector<string> G, vector<string> P) {
