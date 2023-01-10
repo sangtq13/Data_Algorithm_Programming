@@ -11,6 +11,8 @@ using namespace std;
 
 class Solution {
   public:
+    Time complexity: O(m*n*k)
+    Space complexity: O(m*n*k)
     vector<int> k_Transformation(int n, int m, int k, vector<vector<int> > grid, int q, vector<vector<int> > queries) {
         // calculate prefix sum array arr[i][j][l]
         // This is total numbers mod k equal to l 
