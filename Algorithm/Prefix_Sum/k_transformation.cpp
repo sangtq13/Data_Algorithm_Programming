@@ -11,8 +11,6 @@ using namespace std;
 
 class Solution {
   public:
-    // Time complexity: O(m*n*k)
-    // Space complexity: O(m*n*k)
     vector<int> k_Transformation(int n, int m, int k, vector<vector<int> > grid, int q, vector<vector<int> > queries) {
         // calculate prefix sum array arr[i][j][l]
         // This is total numbers mod k equal to l 
@@ -20,16 +18,12 @@ class Solution {
         // and [i, j] coordinates top right corner
         vector<int> ans;
         int pre[n][m][k];
-        for (int i = 0; i < n; ++i) {
-            pre[i][0][0] = 0;
-        }
-        for (int j = 0; j < m; ++j) {
-            pre[0][j][0] = 0;
-        }
         for (int l = 0; l < k; ++l) {
             pre[0][0][l] = 0;
         }
+        
         pre[0][0][grid[0][0] % k] = 1;
+        
         for (int i = 1; i < n; ++i) {
             for (int l = 0; l < k; ++l) {
                 pre[i][0][l] = pre[i-1][0][l] + (grid[i][0] % k == l);
@@ -110,3 +104,5 @@ int main() {
     }
     return 0;
 }
+
+// } Driver Code Ends
