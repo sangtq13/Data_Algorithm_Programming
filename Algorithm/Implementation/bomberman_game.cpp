@@ -19,7 +19,8 @@ void changeState(vector<string>& grid) {
     int rows = grid.size();
     int cols = grid[0].size();
     vector<pair<int, int>> coords = {{-1, 0}, {0, -1}, {1, 0}, {0, 1}};
-    map<pair<int, int>, bool> m;
+    unordered_map<int, bool> m;
+    
     for (int i = 0; i < rows; ++i) {
         for (int j = 0; j < cols; ++j) {
             if (grid[i][j] == 'O') {
@@ -29,16 +30,16 @@ void changeState(vector<string>& grid) {
                     int y = j + c.second;
                     if (0 <= x && x < rows && 0 <= y 
                     && y < cols && (grid[x][y] != 'O' 
-                    || (grid[x][y] == 'O' && m.find({x, y}) != m.end()))) {
+                    || (grid[x][y] == 'O' && m.find(x*cols+y) != m.end()))) {
                         grid[x][y] = '.';
-                        m[{x,y}] = true;
+                        m[x*cols+y] = true;
                     }
                 }
             }
             else {
-                if (m.find({i, j}) == m.end()) {
+                if (m.find(i*cols+j) == m.end()) {
                     grid[i][j] = 'O';
-                    m[{i, j}] = true;
+                    m[i*cols+j] = true;
                 }
             }           
         }
