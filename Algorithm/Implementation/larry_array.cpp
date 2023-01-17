@@ -43,6 +43,47 @@ string larrysArray(vector<int> A) {
     return count % 2 == 0 ? "YES" : "NO";
 }
 
+// Time complexity: O(n^2)
+// Space complexity: O(1)
+string larrysArray1(vector<int> A) {
+    int n = A.size();
+    int i = 0;
+    while (i < n-1) {
+        int loc = std::find (A.begin(), A.end(), i+1) - A.begin();
+        int diff = loc - i;
+        if (A[i] == i+1) 
+        {
+            i++;
+            continue;
+        }
+        if (diff == 1) {
+            if (i+2 > n-1) {
+                return "NO";
+            }
+            int tmp = A[i];
+            A.erase(A.begin()+i);
+            A.insert(A.begin()+loc+1, tmp);
+        }
+        else if (diff % 2 == 0) {
+            int tmp = A[loc];
+            A.erase(A.begin()+loc);
+            A.insert(A.begin()+i, tmp);
+        }
+        else if (diff % 2 == 1) {
+            if (i+2 > n-1)
+            {
+                return "NO";
+            }
+            int tmp = A[loc];
+            swap(A[i], A[i+1]);
+            A.erase(A.begin()+loc);
+            A.insert(A.begin()+i, tmp);
+        }
+        i++;
+    }
+
+    return "YES";
+}
 int main()
 {
     ofstream fout(getenv("OUTPUT_PATH"));
