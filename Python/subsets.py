@@ -19,7 +19,7 @@ class Solution(object):
     return ans
   
   # Time complexity: O(n*2^n)
-  # Space complexity: O(n*2^n)
+  # Space complexity: O(n)
   #  Backtracking solution
   def subsets2(self, nums: List[int]) -> List[List[int]]:
         def backtrack(first = 0, curr = []):
