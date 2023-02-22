@@ -21,7 +21,6 @@ vector<string> split(const string &);
 string highestValuePalindrome(string s, int n, int k) {
     int i = (n-1)/2;
     int count = 0;
-    stack<int> st;
     for (; i >= 0; --i) {
         if (s[i] != s[n-1-i]) count++;
     }
