@@ -1,7 +1,7 @@
 class Solution {
 public:
     // Time complexity: O(n^3)
-    // Space complexity: O(n)
+    // Space complexity: O(1)
     vector<vector<int>> fourSum(vector<int>& nums, int target) {
         vector<vector<int>> ans;
         set<vector<int>> visited;
