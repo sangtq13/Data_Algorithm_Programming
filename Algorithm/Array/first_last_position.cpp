@@ -11,20 +11,24 @@ public:
       if (left_most == -1 && right_most == -1) {
         left_most = mid;
         right_most = mid;
+        this->binarySearch(nums, low, mid-1, target, left_most, right_most);
+        this->binarySearch(nums, mid+1, high, target, left_most, right_most);
       }
       else if (mid < left_most) {
         left_most = mid;
         this->binarySearch(nums, low, mid-1, target, left_most, right_most);
-        return;
       }
       else if (mid > right_most) {
         right_most = mid;
         this->binarySearch(nums, mid+1, high, target, left_most, right_most);
-        return;
       }
     }
-    this->binarySearch(nums, low, mid-1, target, left_most, right_most);
-    this->binarySearch(nums, mid+1, high, target, left_most, right_most);
+    else if (nums[mid] > target) {
+      this->binarySearch(nums, low, mid-1, target, left_most, right_most);
+    }
+    else {
+      this->binarySearch(nums, mid+1, high, target, left_most, right_most);
+    }
   } 
 
   vector<int> searchRange(vector<int>& nums, int target) {
