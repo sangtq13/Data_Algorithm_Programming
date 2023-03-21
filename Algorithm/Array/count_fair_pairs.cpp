@@ -18,7 +18,6 @@ public:
             }
             else {
                 count++;
-                cout << left << right << endl;
                 int low = left + 1;
                 int high = right - 1;
                 while (low <= high) {
@@ -43,7 +42,6 @@ public:
                     }
                 }
                 count += (right - high - 1);
-                cout << count << endl;
                 left++;
                 right--;
             }
