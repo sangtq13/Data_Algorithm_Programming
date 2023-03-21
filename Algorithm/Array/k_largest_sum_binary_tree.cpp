@@ -14,7 +14,7 @@ public:
     // Time complexity: O(n)
     // Space complexity: O(logn) to O(n) in worst case  
     long long kthLargestLevelSum(TreeNode* root, int k) {
-        long long sum[100001] = {0};
+        long long sum = 0;
         queue<pair<TreeNode*, int>> q;
         q.push({root, 0});
         int height = -1;
@@ -23,10 +23,11 @@ public:
         while(!q.empty()) {
             pair<TreeNode*, int> node = q.front();
             q.pop();
-            sum[node.second] += node.first->val;
             if (node.second > height && height != -1){
-                pq.push(sum[height]);
-            } 
+                pq.push(sum);
+                sum = 0;
+            }
+            sum += node.first->val;
             height = node.second;
             if (node.first->left) {
                 q.push({node.first->left, node.second + 1});
@@ -36,7 +37,7 @@ public:
             }
         }
         
-        if (sum[height] > 0) pq.push(sum[height]);
+        if (sum > 0) pq.push(sum);
         
         long long max_k = -1;
         if (height >= k-1) {
