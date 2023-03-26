@@ -1,5 +1,7 @@
 class Solution {
 public:
+    // Time complexity: O(n)
+    // Space complexity: O(nˆ2) in worst case
     bool primeSubOperation(vector<int>& nums) {
         int n = nums.size();
         bool prime[1001];
