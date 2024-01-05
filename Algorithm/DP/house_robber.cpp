@@ -1,16 +1,16 @@
 class Solution {
 public:
     // Time complexity: O(n)
-    // Space complexity: O(n)
+    // Space complexity: O(1)
     int rob(vector<int>& nums) {
         int n = nums.size();
-        int dp[n][2];
-        dp[0][0] = 0;
-        dp[0][1] = nums[0];
+        int first = 0;
+        int second = nums[0];
         for (int i = 1; i < n; ++i) {
-            dp[i][0] = max(dp[i-1][0], dp[i-1][1]);
-            dp[i][1] = dp[i-1][0] + nums[i];
+            int first_tmp = first;
+            first = max(first, second);
+            second = first_tmp + nums[i];
         }
-        return max(dp[n-1][0], dp[n-1][1]);
+        return max(first, second);
     }
 };
