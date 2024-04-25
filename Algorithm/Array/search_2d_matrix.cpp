@@ -1,7 +1,32 @@
+// Stair search algorithm
 class Solution {
 public:
-    // Time complexity: O(logn)
-    // Space complexity: O(logn)
+    // Time complexity: O(m+n)
+    // Space complexity: O(1)
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        int m = matrix.size();
+        int n = matrix[0].size() - 1;
+        int i = 0, j = n;
+        while(i < m && j >= 0) {
+            if (matrix[i][j] == target) {
+                return true;
+            }
+            else if (matrix[i][j] < target) {
+                i++;
+            }
+            else {
+                j--;
+            }
+        }
+        return false;
+    }
+};
+
+// Binary search algorithm with recursive method
+class Solution {
+public:
+    // Time complexity: O(log(m*n))
+    // Space complexity: O(log(m*n))
     bool binarySearch(vector<vector<int>>& matrix, int col_start, int col_end, int row_start, int row_end, int target) {
         bool ret = false;
         if (col_start > col_end || row_start > row_end 
