@@ -18,10 +18,7 @@ public:
             if (n & (1 << i)) {
                 num1 ^= n;
             }
-            else {
-                num2 ^= n;
-            }
         }
-        return {num1, num2};
+        return {num1, num1 ^ x};
     }
 };
