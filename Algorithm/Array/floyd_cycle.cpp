@@ -15,6 +15,8 @@ public:
             }
         }
         int finder = 0;
+        // Find the entry of the cycle. 2 duplicated number have the same value and always go the the same point. 
+        // That's why entry of the cycle is also the number with duplication
         while (true) {
             slow = nums[slow];
             finder = nums[finder];
